@@ -10,6 +10,10 @@ if(NOT DEFINED CMAKE_MACOSX_RPATH)
   set(CMAKE_MACOSX_RPATH 0)
 endif()
 
+# set boost to off by default
+set(GTSAM_ENABLE_BOOST_SERIALISATION OFF)
+set(GTSAM_USE_BOOST_FEATURES OFF)
+
 # Set the version number for the library
 set (GTSAM_VERSION_MAJOR 4)
 set (GTSAM_VERSION_MINOR 2)
