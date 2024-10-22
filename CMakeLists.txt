@@ -1,5 +1,9 @@
 cmake_minimum_required(VERSION 3.0)
 
+if (POLICY CMP0077)
+  cmake_policy(SET CMP0077 NEW)
+endif(POLICY CMP0077)
+
 # new feature to Cmake Version > 2.8.12
 # Mac ONLY. Define Relative Path on Mac OS
 if(NOT DEFINED CMAKE_MACOSX_RPATH)
