@@ -30,6 +30,7 @@
 #include <Eigen/Core>
 #include <iosfwd>
 #include <list>
+#include <cassert>
 
 namespace gtsam {
 
