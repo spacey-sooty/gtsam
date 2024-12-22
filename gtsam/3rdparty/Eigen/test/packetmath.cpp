@@ -450,7 +450,7 @@ void negate_test(Scalar* data1, Scalar* data2, Scalar* ref, int size) {
 
 template <typename Scalar, typename Packet>
 void nmsub_test(Scalar* data1, Scalar* data2, Scalar* ref, int size) {
-  negate_test_impl<Scalar, Packet>::run_negate(data1, data2, ref, size);
+  negate_test_impl<Scalar, Packet>::run_nmsub(data1, data2, ref, size);
 }
 
 template <typename Scalar, typename Packet>
@@ -931,6 +931,7 @@ void packetmath_real() {
     data1[0] = -NumTraits<Scalar>::infinity();
   }
   CHECK_CWISE1_IF(PacketTraits::HasExp, std::exp, internal::pexp);
+  CHECK_CWISE1_IF(PacketTraits::HasExp, std::exp2, internal::pexp2);
 
   CHECK_CWISE1_BYREF1_IF(PacketTraits::HasExp, REF_FREXP, internal::pfrexp);
   if (PacketTraits::HasExp) {

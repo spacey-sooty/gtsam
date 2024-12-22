@@ -77,31 +77,15 @@ def unsupported_inclusions(dp, f):
 
 
 def copy_upstream_src(wpilib_root):
+    wpilib_root = os.path.join(wpilib_root, "")
+    print(wpilib_root)
 
     # Delete old install
     for d in ["gtsam/3rdparty/Eigen"]:
         shutil.rmtree(os.path.join(wpilib_root, d), ignore_errors=True)
 
-    # Copy Eigen headers into allwpilib
-    eigen_files = walk_cwd_and_copy_if(
-        eigen_inclusions,
-        os.path.join(wpilib_root, "gtsam/3rdparty/Eigen"),
-    )
-
-    # Copy unsupported headers into allwpilib
-    unsupported_files = walk_cwd_and_copy_if(
-        unsupported_inclusions,
-        os.path.join(wpilib_root, "gtsam/3rdparty/Eigen"),
-    )
-
-    for f in eigen_files:
-        comment_out_invalid_includes(
-            f, [os.path.join(wpilib_root, "gtsam/3rdparty/Eigen")]
-        )
-    for f in unsupported_files:
-        comment_out_invalid_includes(
-            f, [os.path.join(wpilib_root, "gtsam/3rdparty/Eigen")]
-        )
+    # Upstream copies the whole enchilada, so let's do that too
+    shutil.copytree(".", os.path.join(wpilib_root, "gtsam/3rdparty/Eigen"))
 
 def main():
     name = "eigen"
