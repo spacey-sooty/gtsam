@@ -59,8 +59,7 @@ else()
 endif()
 
 # Detect Eigen version:
-string(REPLACE "$<BUILD_INTERFACE:*" "${CMAKE_CURRENT_SOURCE_DIR}" FIXED_EIGEN_INCLUDE_DIR ${GTSAM_EIGEN_INCLUDE_FOR_BUILD})
-set(EIGEN_VER_H "${FIXED_EIGEN_INCLUDE_DIR}/Eigen/src/Core/util/Macros.h")
+set(EIGEN_VER_H "${CMAKE_CURRENT_BINARY_DIR}/_deps/eigen3-src/Eigen/src/Core/util/Macros.h")
 if (EXISTS ${EIGEN_VER_H})
     file(READ "${EIGEN_VER_H}" STR_EIGEN_VERSION)
 
